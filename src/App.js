@@ -1,57 +1,29 @@
-import Tilt from 'react-parallax-tilt'
-import { Box } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
+import Tilt3D from './components/Tilt3D'
 
-function App() {
-  const offset = 1.5
-  var pngArray = []
-
-  for (var i = 1; i < 40; i++) {
-    var k = i < 10 ? '0' + i : i
-    pngArray.push([`img/png3D/${k}.png`, i * offset])
-  }
-
+export default function App() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center'
-      }}
-    >
-      <Tilt
-        style={{
-          transformStyle: 'preserve-3d',
-          transform: 'perspective(1000px)'
+    <Container>
+      <Typography
+        variant="h5"
+        sx={{
+          mt: 5,
+          textAlign: 'center'
         }}
-        tiltMaxAngleX={40}
-        tiltMaxAngleY={40}
-        perspective={500}
-        transitionSpeed={1500}
-        scale={1.1}
       >
-        <img src="img/png3D/00.png" alt="3D" />
-        {pngArray.map((item) => (
-          <>
-            <img
-              style={{
-                position: 'absolute',
-                transform: `translateX(-270px) translateZ(${item[1]}px)`
-              }}
-              src={item[0]}
-              alt="3D"
-            />
-            <img
-              style={{
-                position: 'absolute',
-                transform: `translateX(-270px) translateZ(-${item[1]}px)`
-              }}
-              src={item[0]}
-              alt="3D"
-            />
-          </>
-        ))}
-      </Tilt>
-    </Box>
+        Passe o Mouse
+      </Typography>
+      <Box
+        sx={{
+          mt: 5,
+          display: 'flex',
+          justifyContent: 'center'
+        }}
+      >
+        <Tilt3D />
+        <Tilt3D />
+        <Tilt3D />
+      </Box>
+    </Container>
   )
 }
-
-export default App
