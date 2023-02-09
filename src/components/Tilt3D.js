@@ -1,12 +1,12 @@
 import Tilt from 'react-parallax-tilt'
 
-export default function Tilt3D() {
-  const offset = 1.2
+export default function Tilt3D(props) {
+  const offset = props.offset
   var pngArray = []
 
-  for (var i = 1; i < 40; i++) {
+  for (var i = 0; i < props.numb; i++) {
     var k = i < 10 ? '0' + i : i
-    pngArray.push([`img/png3D/${k}.png`, i * offset])
+    pngArray.push([`img/${props.base}/${k}.png`, i * offset])
   }
 
   return (
@@ -21,7 +21,7 @@ export default function Tilt3D() {
       transitionSpeed={1500}
       scale={1.2}
     >
-      <img src="img/png3D/00.png" alt="3D" />
+      <img src={pngArray[0][0]} alt="3D" />
       {pngArray.map((item) => (
         <>
           <img
